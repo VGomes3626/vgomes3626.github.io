@@ -86,7 +86,7 @@
             margin-bottom: 20px;
         }
 
-        /* --- EFEITO GLITCH NO NOME (DURANTE O HOVER) --- */
+        /* --- EFEITO GLITCH NO NOME --- */
         .profile-info h1 {
             margin: 0;
             color: white;
@@ -137,28 +137,31 @@
             100% { transform: translate(0); }
         }
 
-        /* --- EFEITO DE DIGITAÇÃO NO CARGO --- */
+        /* --- CORREÇÃO: EFEITO DE DIGITAÇÃO NO CARGO (SEMPRE EM BAIXO) --- */
         .profile-info p { 
             color: var(--main-color); 
             font-family: 'Courier New', monospace; 
-            margin: 10px 0; 
             font-weight: bold;
-            display: inline-block;
+            
+            /* FORÇA O ELEMENTO A SER UM BLOCO NA LINHA DE BAIXO */
+            display: block !important; 
+            width: fit-content; /* A largura é apenas o tamanho do texto */
+            margin: 10px auto; /* Centra horizontalmente e dá espaço vertical */
+            
             overflow: hidden; /* Esconde o texto que ainda não foi digitado */
             border-right: .15em solid var(--main-color); /* O cursor */
             white-space: nowrap; /* Garante que o texto fica numa linha */
             letter-spacing: .10em;
+            
             /* Animação de digitação e do cursor */
             animation: typing 3.5s steps(30, end), blink-caret .5s step-end infinite;
         }
 
-        /* Definição da animação de digitação */
         @keyframes typing {
             from { width: 0 }
             to { width: 100% }
         }
 
-        /* Definição da animação do cursor a piscar */
         @keyframes blink-caret {
             from, to { border-color: transparent }
             50% { border-color: var(--main-color) }
@@ -200,19 +203,17 @@
             border-radius: 12px; overflow: hidden;
             transition: all 0.3s ease; backdrop-filter: blur(4px);
             height: 100%;
-            position: relative; /* Necessário para o pseudo-elemento do glow */
+            position: relative;
         }
 
         /* --- EFEITO GLOW NOS CARDS (HOVER) --- */
         .card:hover {
             transform: translateY(-8px);
             border-color: var(--main-color);
-            /* Glow verde pulsante suave */
             box-shadow: 0 0 15px rgba(35, 134, 54, 0.6);
             animation: pulse-glow 2s infinite;
         }
 
-        /* Animação de pulsação do glow */
         @keyframes pulse-glow {
             0% { box-shadow: 0 0 15px rgba(35, 134, 54, 0.6); }
             50% { box-shadow: 0 0 25px rgba(35, 134, 54, 0.9); }
