@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | Cybersecurity Specialist</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #58a6ff;
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container { max-width: 800px; margin: auto; }
+        header { border-bottom: 1px solid #30363d; padding-bottom: 20px; }
+        h1 { color: #238636; } /* Verde terminal */
+        .prompt { color: #f85149; font-weight: bold; } /* Vermelho para destaque */
+        .project-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 6px;
+        }
+        a { color: #1f6feb; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .cursor { animation: blink 1s infinite; }
+        @keyframes blink { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="prompt">></span> root@ciberseguranca:~# <span class="cursor">_</span></h1>
+            <p>Olá, eu sou o [Teu Nome]. Especialista em Segurança Ofensiva / Defensiva.</p>
+        </header>
+
+        <section id="skills">
+            <h3>[01] Competências_Técnicas</h3>
+            <ul>
+                <li>Pentesting (Web & Network)</li>
+                <li>Análise de Malware</li>
+                <li>SIEM & Monitorização (Splunk/ELK)</li>
+                <li>Scripting: Python, Bash, Go</li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h3>[02] Projetos_Recentes</h3>
+            <div class="project-card">
+                <strong>> Write-up: HTB Machine "Legacy"</strong>
+                <p>Exploração de vulnerabilidades SMB e escalonamento de privilégios.</p>
+                <a href="#">[Ver Repositório]</a>
+            </div>
+        </section>
+
+        <footer>
+            <p style="font-size: 0.8em; margin-top: 50px; color: #8b949e;">
+                -- End of Transmission --
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
