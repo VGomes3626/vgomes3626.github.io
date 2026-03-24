@@ -3,64 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio | Cybersecurity Specialist</title>
+    <title>VGomes3626 | InfoSec Portfolio</title>
     <style>
+        :root {
+            --bg: #0d1117;
+            --card-bg: #161b22;
+            --text: #c9d1d9;
+            --main-color: #238636; /* Verde GitHub/Terminal */
+            --accent: #58a6ff;
+            --border: #30363d;
+        }
+
         body {
-            background-color: #0d1117;
-            color: #58a6ff;
-            font-family: 'Courier New', Courier, monospace;
-            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
-        .container { max-width: 800px; margin: auto; }
-        header { border-bottom: 1px solid #30363d; padding-bottom: 20px; }
-        h1 { color: #238636; } /* Verde terminal */
-        .prompt { color: #f85149; font-weight: bold; } /* Vermelho para destaque */
-        .project-card {
-            background: #161b22;
-            border: 1px solid #30363d;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 6px;
+
+        .container { max-width: 900px; margin: auto; padding: 40px 20px; }
+
+        /* --- Perfil --- */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
         }
-        a { color: #1f6feb; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .cursor { animation: blink 1s infinite; }
-        @keyframes blink { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--main-color);
+            object-fit: cover;
+            background: #21262d; /* Placeholder */
+        }
+
+        .profile-info h1 { margin: 0; color: white; font-size: 2rem; }
+        .profile-info p { color: var(--accent); font-family: 'Courier New', monospace; margin: 5px 0; }
+
+        /* --- Projetos Grid --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--main-color);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 160px;
+            background: #21262d;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-content { padding: 15px; }
+        .card-content h3 { margin: 0 0 10px 0; color: white; font-size: 1.2rem; }
+        .card-content p { font-size: 0.9rem; color: #8b949e; }
+        
+        .tag {
+            display: inline-block;
+            background: #23863622;
+            color: var(--main-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-top: 10px;
+        }
+
+        footer { text-align: center; margin-top: 60px; color: #484f58; font-size: 0.8rem; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1><span class="prompt">></span> root@ciberseguranca:~# <span class="cursor">_</span></h1>
-            <p>Olá, eu sou o [Teu Nome]. Especialista em Segurança Ofensiva / Defensiva.</p>
-        </header>
 
-        <section id="skills">
-            <h3>[01] Competências_Técnicas</h3>
-            <ul>
-                <li>Pentesting (Web & Network)</li>
-                <li>Análise de Malware</li>
-                <li>SIEM & Monitorização (Splunk/ELK)</li>
-                <li>Scripting: Python, Bash, Go</li>
-            </ul>
-        </section>
+<div class="container">
+    <header class="profile-header">
+        <img src="foto-perfil.jpg" alt="Vitor Gomes" class="profile-pic">
+        <div class="profile-info">
+            <h1>Vitor Gomes</h1>
+            <p>> Cybersecurity Analyst & Researcher</p>
+            <p style="color: #8b949e; font-size: 0.9rem;">📍 Portugal | 🛡️ Pentesting | 🔍 Blue Teaming</p>
+        </div>
+    </header>
 
-        <section id="projects">
-            <h3>[02] Projetos_Recentes</h3>
-            <div class="project-card">
-                <strong>> Write-up: HTB Machine "Legacy"</strong>
-                <p>Exploração de vulnerabilidades SMB e escalonamento de privilégios.</p>
-                <a href="#">[Ver Repositório]</a>
+    <h2>[#] Projetos_e_Writeups</h2>
+    
+    <div class="grid">
+        <div class="card">
+            <img src="capa-projeto1.jpg" alt="Preview" class="card-img">
+            <div class="card-content">
+                <h3>TryHackMe: Steel Mountain</h3>
+                <p>Exploração de vulnerabilidade no servidor de ficheiros Rejetto e escalonamento via PowerUp.</p>
+                <span class="tag">CVE-2014-6287</span>
             </div>
-        </section>
+        </div>
 
-        <footer>
-            <p style="font-size: 0.8em; margin-top: 50px; color: #8b949e;">
-                -- End of Transmission --
-            </p>
-        </footer>
+        <div class="card">
+            <img src="capa-projeto2.jpg" alt="Preview" class="card-img">
+            <div class="card-content">
+                <h3>Scanner de Portas Python</h3>
+                <p>Desenvolvimento de uma ferramenta multithread para deteção de serviços expostos.</p>
+                <span class="tag">Network Security</span>
+            </div>
+        </div>
     </div>
+
+    <footer>
+        <p>&copy; 2026 VGomes3626. All rights reserved.</p>
+    </footer>
+</div>
+
 </body>
 </html>
