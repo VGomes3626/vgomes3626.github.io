@@ -43,7 +43,7 @@
         /* --- PERFIL --- */
         .profile-header {
             display: flex; flex-direction: column; align-items: center;
-            text-align: center; margin-bottom: 50px;
+            text-align: center; margin-bottom: 30px;
         }
         .profile-pic {
             width: 160px; height: 160px; border-radius: 50%;
@@ -53,8 +53,22 @@
         }
         .profile-info h1 { margin: 0; color: white; font-size: 2.2rem; }
         .profile-info p { color: var(--accent); font-family: 'Courier New', monospace; margin: 10px 0; }
+        
         .tags-header { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 10px; }
-        .tags-header span { color: #8b949e; font-size: 0.9rem; }
+        .tags-header span, .tags-header a { color: #8b949e; font-size: 0.85rem; text-decoration: none; }
+        .tags-header a:hover { color: var(--accent); }
+
+        /* --- SECÇÃO ABOUT ME --- */
+        .about-section {
+            text-align: center;
+            margin-bottom: 50px;
+            line-height: 1.6;
+            background: rgba(22, 27, 34, 0.5);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px inset var(--border);
+        }
+        .about-section p { margin: 0; color: #8b949e; font-size: 1rem; }
 
         /* --- EXPERIÊNCIA E EDUCAÇÃO --- */
         .experience-section {
@@ -74,9 +88,7 @@
             display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
         }
-        .project-card-link {
-            text-decoration: none; color: inherit; display: block;
-        }
+        .project-card-link { text-decoration: none; color: inherit; display: block; }
         .card {
             background: var(--card-bg); border: 1px solid var(--border);
             border-radius: 12px; overflow: hidden;
@@ -114,15 +126,26 @@
             <h1>Vitor Gomes</h1>
             <p>> Cybersecurity Analyst & Researcher</p>
             <div class="tags-header">
-                <span> Porto, Portugal</span>
-                <span> Pentesting</span>
-                <span> Red Teaming</span>
-                <span> 914929184</span>
-                <span> drakonvitorgomes@gmail.com</span>
-                <a href="https://www.linkedin.com/in/vitor-gomes-394890317" target="_blank" class="exp-link">@ Linkdin [↗]</a>
+                <span>📍 Porto, Portugal</span>
+                <span>🛡️ Pentesting</span>
+                <span>🔍 Red Teaming</span>
+                <span>📞 914929184</span>
+                <a href="mailto:drakonvitorgomes@gmail.com">✉️ drakonvitorgomes@gmail.com</a>
+                <a href="https://www.linkedin.com/in/vitor-gomes-394890317" target="_blank">🟦 LinkedIn [↗]</a>
             </div>
         </div>
     </header>
+
+    <section class="about-section">
+        <h2>[#] About_Me</h2>
+        <p>
+            Entusiasta de cibersegurança com foco em <b>Pentesting</b> e <b>Red Teaming</b>. 
+            Atualmente, aprofundo os meus conhecimentos no CTeSP de Cibersegurança no ISTEC Porto, 
+            enquanto aplico competências práticas como estagiário no Covet Group. 
+            Desenvolvo ferramentas próprias para automação de segurança e estou focado em identificar vulnerabilidades 
+            em infraestruturas Cloud e aplicações Web.
+        </p>
+    </section>
 
     <section class="experience-section">
         <h2>[#] Experience_&_Education</h2>
@@ -136,9 +159,9 @@
 
         <div class="exp-item">
             <span class="exp-date">2024 - 2026</span>
-            <span class="exp-title">CTeSP de cibersegurança</span>
-            <a href="https://istec-porto.pt" target="_blank" class="exp-link">@ ISTEC [↗]</a>
-            <p style="color: #8b949e; font-size: 0.9rem; margin-top: 10px;">Especialização em cibersegurança.</p>
+            <span class="exp-title">CTeSP de Cibersegurança</span>
+            <a href="https://istec-porto.pt" target="_blank" class="exp-link">@ ISTEC Porto [↗]</a>
+            <p style="color: #8b949e; font-size: 0.9rem; margin-top: 10px;">Foco em Segurança de Redes, Ethical Hacking e Administração de Sistemas.</p>
         </div>
     </section>
 
