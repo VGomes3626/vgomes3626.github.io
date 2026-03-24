@@ -7,11 +7,12 @@
     <style>
         :root {
             --bg: #0d1117;
-            --card-bg: #161b22;
+            --card-bg: #161b2299; /* Ligeiramente transparente para ver o fundo */
             --text: #c9d1d9;
             --main-color: #238636; /* Verde GitHub/Terminal */
             --accent: #58a6ff;
             --border: #30363d;
+            --anim-color: rgba(110, 118, 129, 0.1); /* Cor da animação (muito ténue) */
         }
 
         body {
@@ -20,9 +21,55 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
+            overflow-x: hidden; /* Evita scroll horizontal por causa da animação */
+            position: relative;
         }
 
-        .container { max-width: 900px; margin: auto; padding: 40px 20px; }
+        /* --- Animação de Fundo (CSS puro) --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, var(--anim-color) 0%, transparent 100%);
+            background-size: 100% 3px;
+            animation: scanlines 2s linear infinite;
+            z-index: -2; /* Fica atrás de tudo */
+        }
+
+        /* Os "pontos" de dados a cair */
+        body::after {
+            content: "1 0 1 1 0 0 1 0 1 0 1 1 0 1 0 0 1 1 0 1"; /* Padrão de dados */
+            position: fixed;
+            top: -10vh;
+            left: 0;
+            width: 100vw;
+            font-family: monospace;
+            font-size: 14px;
+            color: var(--anim-color);
+            white-space: nowrap;
+            opacity: 0.5;
+            z-index: -1; /* À frente da scanline, atrás do conteúdo */
+            animation: dataFall 20s linear infinite;
+            text-shadow: 20vw 15vh, 40vw 30vh, 60vw 10vh, 80vw 25vh, 10vw 40vh; /* Cria clones em posições diferentes */
+        }
+
+        @keyframes scanlines {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+
+        @keyframes dataFall {
+            0% { transform: translateY(0vh); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(110vh); opacity: 0; }
+        }
+
+        /* --- Estrutura e Conteúdo --- */
+        .container { max-width: 900px; margin: auto; padding: 40px 20px; position: relative; z-index: 1; }
 
         /* --- Perfil --- */
         .profile-header {
@@ -32,6 +79,9 @@
             border-bottom: 1px solid var(--border);
             padding-bottom: 30px;
             margin-bottom: 40px;
+            background: var(--bg); /* Garante que o texto seja legível */
+            border-radius: 8px;
+            padding: 20px;
         }
 
         .profile-pic {
@@ -58,25 +108,27 @@
             border: 1px solid var(--border);
             border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.2s;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+            backdrop-filter: blur(2px); /* Efeito de vidro desfocado */
         }
 
         .card:hover {
             transform: translateY(-5px);
             border-color: var(--main-color);
+            box-shadow: 0 5px 15px rgba(35, 134, 54, 0.2);
         }
 
         .card-img {
             width: 100%;
             height: 160px;
-            background: #21262d;
+            background: #21262d; /* Placeholder */
             object-fit: cover;
             border-bottom: 1px solid var(--border);
         }
 
         .card-content { padding: 15px; }
         .card-content h3 { margin: 0 0 10px 0; color: white; font-size: 1.2rem; }
-        .card-content p { font-size: 0.9rem; color: #8b949e; }
+        .card-content p { font-size: 0.9rem; color: #8b949e; margin-bottom: 10px; }
         
         .tag {
             display: inline-block;
@@ -85,10 +137,9 @@
             padding: 2px 8px;
             border-radius: 4px;
             font-size: 0.75rem;
-            margin-top: 10px;
         }
 
-        footer { text-align: center; margin-top: 60px; color: #484f58; font-size: 0.8rem; }
+        footer { text-align: center; margin-top: 60px; color: #484f58; font-size: 0.8rem; padding: 20px; }
     </style>
 </head>
 <body>
@@ -107,7 +158,7 @@
     
     <div class="grid">
         <div class="card">
-            <img src="capa-projeto1.jpg" alt="Preview" class="card-img">
+            <img src="capa-projeto1.jpg" alt="Steel Mountain Preview" class="card-img">
             <div class="card-content">
                 <h3>TryHackMe: Steel Mountain</h3>
                 <p>Exploração de vulnerabilidade no servidor de ficheiros Rejetto e escalonamento via PowerUp.</p>
@@ -116,7 +167,7 @@
         </div>
 
         <div class="card">
-            <img src="capa-projeto2.jpg" alt="Preview" class="card-img">
+            <img src="capa-projeto2.jpg" alt="Python Scanner Preview" class="card-img">
             <div class="card-content">
                 <h3>Scanner de Portas Python</h3>
                 <p>Desenvolvimento de uma ferramenta multithread para deteção de serviços expostos.</p>
