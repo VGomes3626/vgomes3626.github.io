@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VGomes3626 | InfoSec Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* --- CONFIGURAÇÕES DE CORES --- */
         :root {
@@ -14,13 +15,10 @@
             --accent: #58a6ff;     
             --border: #30363d;
             --anim-color: rgba(110, 118, 129, 0.08);
-            --nav-bg: rgba(13, 17, 23, 0.9);
+            --nav-bg: rgba(13, 17, 23, 0.95);
         }
 
-        /* Smooth Scroll para deslizar suavemente */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: var(--bg) !important;
@@ -35,15 +33,33 @@
         /* --- NAVEGAÇÃO --- */
         nav {
             position: fixed;
-            top: 0; right: 0;
+            top: 0; left: 0;
             width: 100%;
             background: var(--nav-bg);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
             display: flex;
-            justify-content: flex-end;
-            padding: 15px 5%;
+            justify-content: space-between; /* Espaça os ícones à esquerda e links à direita */
+            align-items: center;
+            padding: 12px 5%;
             backdrop-filter: blur(10px);
+            box-sizing: border-box;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            color: var(--text);
+            font-size: 1.4rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent);
+            transform: scale(1.1);
         }
 
         .nav-links {
@@ -60,9 +76,7 @@
             font-family: monospace;
         }
 
-        .nav-links a:hover {
-            color: var(--main-color);
-        }
+        .nav-links a:hover { color: var(--main-color); }
 
         /* --- ANIMAÇÃO DE FUNDO --- */
         body::before {
@@ -76,7 +90,7 @@
         }
         @keyframes scanlines { 0% { background-position: 0 0; } 100% { background-position: 0 100%; } }
 
-        .container { max-width: 900px; margin: auto; padding: 100px 20px 40px 20px; position: relative; z-index: 1; }
+        .container { max-width: 900px; margin: auto; padding: 120px 20px 40px 20px; position: relative; z-index: 1; }
 
         /* --- PERFIL --- */
         .profile-header {
@@ -96,20 +110,16 @@
         .tags-header span, .tags-header a { color: #8b949e; font-size: 0.85rem; text-decoration: none; }
         .tags-header a:hover { color: var(--accent); }
 
-        /* --- SECÇÃO ABOUT ME --- */
+        /* --- ABOUT ME --- */
         .about-section {
-            text-align: center;
-            margin-bottom: 50px;
-            line-height: 1.6;
-            background: rgba(22, 27, 34, 0.5);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px inset var(--border);
-            scroll-margin-top: 100px; /* Margem para não ficar colado ao topo após o scroll */
+            text-align: center; margin-bottom: 50px; line-height: 1.6;
+            background: rgba(22, 27, 34, 0.5); padding: 25px;
+            border-radius: 12px; border: 1px inset var(--border);
+            scroll-margin-top: 100px;
         }
         .about-section p { margin: 0; color: #8b949e; font-size: 1rem; }
 
-        /* --- EXPERIÊNCIA E EDUCAÇÃO --- */
+        /* --- EXPERIENCE --- */
         .experience-section {
             margin-bottom: 50px; padding: 25px;
             background: rgba(35, 134, 54, 0.05);
@@ -123,7 +133,7 @@
         .exp-link { color: var(--accent); text-decoration: none; font-size: 1rem; }
         .exp-link:hover { text-decoration: underline; }
 
-        /* --- PROJETOS --- */
+        /* --- PROJECTS --- */
         .projects-wrapper { scroll-margin-top: 100px; }
         .grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -161,6 +171,11 @@
 <body>
 
 <nav>
+    <div class="social-icons">
+        <a href="https://github.com/VGomes3626" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/vitor-gomes-394890317" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </div>
+    
     <div class="nav-links">
         <a href="#about">./About</a>
         <a href="#experience">./Experience</a>
@@ -178,7 +193,6 @@
                 <span> Porto, Portugal</span>
                 <span> 914929184</span>
                 <a href="mailto:drakonvitorgomes@gmail.com">✉️ drakonvitorgomes@gmail.com</a>
-                <a href="https://www.linkedin.com/in/vitor-gomes-394890317" target="_blank">🟦 LinkedIn [↗]</a>
             </div>
         </div>
     </header>
@@ -212,7 +226,7 @@
     </section>
 
     <div id="projects" class="projects-wrapper">
-        <h2>[#] Projects_and_Tools</h2>
+        <h2>[#] Projetos_e_Tools</h2>
         <div class="grid">
             <a href="https://github.com/VGomes3626/URL-JS-Scanner" target="_blank" class="project-card-link">
                 <div class="card">
