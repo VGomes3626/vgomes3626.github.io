@@ -1,185 +1,53 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VGomes3626 | InfoSec Portfolio</title>
-    <style>
-        :root {
-            --bg: #0d1117;
-            --card-bg: #161b2299; /* Ligeiramente transparente para ver o fundo */
-            --text: #c9d1d9;
-            --main-color: #238636; /* Verde GitHub/Terminal */
-            --accent: #58a6ff;
-            --border: #30363d;
-            --anim-color: rgba(110, 118, 129, 0.1); /* Cor da animação (muito ténue) */
-        }
+<style>
+    /* ... (mantém o resto do CSS igual) ... */
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden; /* Evita scroll horizontal por causa da animação */
-            position: relative;
-        }
+    .profile-header {
+        display: flex;
+        flex-direction: column; /* Alinha em coluna */
+        align-items: center;    /* Centra horizontalmente */
+        text-align: center;     /* Centra o texto */
+        gap: 20px;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+        background: transparent; 
+    }
 
-        /* --- Animação de Fundo (CSS puro) --- */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, var(--anim-color) 0%, transparent 100%);
-            background-size: 100% 3px;
-            animation: scanlines 2s linear infinite;
-            z-index: -2; /* Fica atrás de tudo */
-        }
+    .profile-pic {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        border: 3px solid var(--main-color);
+        object-fit: cover;
+        background: #21262d;
+        box-shadow: 0 0 20px rgba(35, 134, 54, 0.3); /* Brilho suave verde */
+    }
 
-        /* Os "pontos" de dados a cair */
-        body::after {
-            content: "1 0 1 1 0 0 1 0 1 0 1 1 0 1 0 0 1 1 0 1"; /* Padrão de dados */
-            position: fixed;
-            top: -10vh;
-            left: 0;
-            width: 100vw;
-            font-family: monospace;
-            font-size: 14px;
-            color: var(--anim-color);
-            white-space: nowrap;
-            opacity: 0.5;
-            z-index: -1; /* À frente da scanline, atrás do conteúdo */
-            animation: dataFall 20s linear infinite;
-            text-shadow: 20vw 15vh, 40vw 30vh, 60vw 10vh, 80vw 25vh, 10vw 40vh; /* Cria clones em posições diferentes */
-        }
-
-        @keyframes scanlines {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 100%; }
-        }
-
-        @keyframes dataFall {
-            0% { transform: translateY(0vh); opacity: 0; }
-            10% { opacity: 0.5; }
-            90% { opacity: 0.5; }
-            100% { transform: translateY(110vh); opacity: 0; }
-        }
-
-        /* --- Estrutura e Conteúdo --- */
-        .container { max-width: 900px; margin: auto; padding: 40px 20px; position: relative; z-index: 1; }
-
-        /* --- Perfil --- */
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 30px;
-            margin-bottom: 40px;
-            background: var(--bg); /* Garante que o texto seja legível */
-            border-radius: 8px;
-            padding: 20px;
-        }
-
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid var(--main-color);
-            object-fit: cover;
-            background: #21262d; /* Placeholder */
-        }
-
-        .profile-info h1 { margin: 0; color: white; font-size: 2rem; }
-        .profile-info p { color: var(--accent); font-family: 'Courier New', monospace; margin: 5px 0; }
-
-        /* --- Projetos Grid --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-            backdrop-filter: blur(2px); /* Efeito de vidro desfocado */
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--main-color);
-            box-shadow: 0 5px 15px rgba(35, 134, 54, 0.2);
-        }
-
-        .card-img {
-            width: 100%;
-            height: 160px;
-            background: #21262d; /* Placeholder */
-            object-fit: cover;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .card-content { padding: 15px; }
-        .card-content h3 { margin: 0 0 10px 0; color: white; font-size: 1.2rem; }
-        .card-content p { font-size: 0.9rem; color: #8b949e; margin-bottom: 10px; }
-        
-        .tag {
-            display: inline-block;
-            background: #23863622;
-            color: var(--main-color);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-        }
-
-        footer { text-align: center; margin-top: 60px; color: #484f58; font-size: 0.8rem; padding: 20px; }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <header class="profile-header">
-        <img src="foto-perfil.jpg" alt="Vitor Gomes" class="profile-pic">
-        <div class="profile-info">
-            <h1>Vitor Gomes</h1>
-            <p>> Cybersecurity Analyst & Researcher</p>
-            <p style="color: #8b949e; font-size: 0.9rem;">📍 Portugal | 🛡️ Pentesting | 🔍 Blue Teaming</p>
-        </div>
-    </header>
-
-    <h2>[#] Projetos_e_Writeups</h2>
+    .profile-info h1 { 
+        margin: 10px 0 5px 0; 
+        color: white; 
+        font-size: 2.2rem; 
+        letter-spacing: 1px;
+    }
     
-    <div class="grid">
-        <div class="card">
-            <img src="capa-projeto1.jpg" alt="Steel Mountain Preview" class="card-img">
-            <div class="card-content">
-                <h3>TryHackMe: Steel Mountain</h3>
-                <p>Exploração de vulnerabilidade no servidor de ficheiros Rejetto e escalonamento via PowerUp.</p>
-                <span class="tag">CVE-2014-6287</span>
-            </div>
-        </div>
+    .profile-info p { 
+        color: var(--accent); 
+        font-family: 'Courier New', monospace; 
+        margin: 5px 0; 
+    }
 
-        <div class="card">
-            <img src="capa-projeto2.jpg" alt="Python Scanner Preview" class="card-img">
-            <div class="card-content">
-                <h3>Scanner de Portas Python</h3>
-                <p>Desenvolvimento de uma ferramenta multithread para deteção de serviços expostos.</p>
-                <span class="tag">Network Security</span>
-            </div>
+    /* ... (mantém o resto do CSS igual) ... */
+</style>
+
+<header class="profile-header">
+    <img src="foto-perfil.jpg" alt="Vitor Gomes" class="profile-pic">
+    <div class="profile-info">
+        <h1>Vitor Gomes</h1>
+        <p>> Cybersecurity Analyst & Researcher</p>
+        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 10px;">
+            <span style="color: #8b949e; font-size: 0.9rem;">📍 Portugal</span>
+            <span style="color: #8b949e; font-size: 0.9rem;">🛡️ Pentesting</span>
+            <span style="color: #8b949e; font-size: 0.9rem;">🔍 Blue Teaming</span>
         </div>
     </div>
-
-    <footer>
-        <p>&copy; 2026 VGomes3626. All rights reserved.</p>
-    </footer>
-</div>
-
-</body>
-</html>
+</header>
