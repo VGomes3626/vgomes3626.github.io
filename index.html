@@ -5,30 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VGomes3626 | InfoSec Portfolio</title>
     <style>
-        /* Variáveis de Cor - Garantindo o Modo Escuro */
+        /* --- CONFIGURAÇÕES DE CORES --- */
         :root {
             --bg: #0d1117;
-            --card-bg: #161b2299; /* Transparência para a animação */
+            --card-bg: rgba(22, 27, 34, 0.8);
             --text: #c9d1d9;
-            --main-color: #238636; /* Verde Terminal */
-            --accent: #58a6ff;
+            --main-color: #238636; 
+            --accent: #58a6ff;     
             --border: #30363d;
-            --anim-color: rgba(110, 118, 129, 0.05); /* Animação muito ténue */
+            --anim-color: rgba(110, 118, 129, 0.08);
         }
 
-        /* Configuração Base do Corpo */
         body {
-            background-color: var(--bg) !important; /* !important força o modo escuro */
+            background-color: var(--bg) !important;
             color: var(--text);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0; padding: 0;
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
         }
 
-        /* --- Animação de Fundo (Scanlines e Dados) --- */
+        /* --- ANIMAÇÃO DE FUNDO --- */
         body::before {
             content: "";
             position: fixed;
@@ -38,113 +36,73 @@
             animation: scanlines 2s linear infinite;
             z-index: -2;
         }
-
-        body::after {
-            content: "1 0 1 1 0 0 1 0 1 0 1 1 0 1 0 0 1 1 0 1";
-            position: fixed;
-            top: -10vh; left: 0; width: 100vw;
-            font-family: monospace; font-size: 14px;
-            color: var(--anim-color);
-            white-space: nowrap; opacity: 0.5; z-index: -1;
-            animation: dataFall 20s linear infinite;
-            text-shadow: 20vw 15vh, 40vw 30vh, 60vw 10vh, 80vw 25vh, 10vw 40vh;
-        }
-
         @keyframes scanlines { 0% { background-position: 0 0; } 100% { background-position: 0 100%; } }
-        @keyframes dataFall { 0% { transform: translateY(0vh); opacity: 0; } 10% { opacity: 0.5; } 90% { opacity: 0.5; } 100% { transform: translateY(110vh); opacity: 0; } }
 
-        /* --- Estrutura e Conteúdo --- */
-        .container { 
-            max-width: 900px; 
-            margin: auto; 
-            padding: 40px 20px; 
-            position: relative; 
-            z-index: 1; 
-        }
+        .container { max-width: 900px; margin: auto; padding: 40px 20px; position: relative; z-index: 1; }
 
-        /* --- Perfil Centrado --- */
+        /* --- PERFIL --- */
         .profile-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 20px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 40px;
-            margin-bottom: 40px;
-            background: transparent;
+            display: flex; flex-direction: column; align-items: center;
+            text-align: center; margin-bottom: 50px;
         }
-
         .profile-pic {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            border: 3px solid var(--main-color);
-            object-fit: cover;
-            /* Placeholder preto caso a foto não carregue */
-            background-color: #000; 
-            box-shadow: 0 0 20px rgba(35, 134, 54, 0.3);
-            display: block; /* Garante que ocupa espaço */
-            margin-top: 20px; /* Evita cortar o nome */
+            width: 160px; height: 160px; border-radius: 50%;
+            border: 3px solid var(--main-color); object-fit: cover;
+            background-color: #000; box-shadow: 0 0 20px rgba(35, 134, 54, 0.3);
+            margin-bottom: 20px;
         }
+        .profile-info h1 { margin: 0; color: white; font-size: 2.2rem; }
+        .profile-info p { color: var(--accent); font-family: 'Courier New', monospace; margin: 10px 0; }
+        .tags-header { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 10px; }
+        .tags-header span { color: #8b949e; font-size: 0.9rem; }
 
-        .profile-info h1 { 
-            margin: 10px 0 5px 0; 
-            color: white; 
-            font-size: 2.2rem; 
-            letter-spacing: 1px;
+        /* --- EXPERIÊNCIA E EDUCAÇÃO --- */
+        .experience-section {
+            margin-bottom: 50px; padding: 25px;
+            background: rgba(35, 134, 54, 0.05);
+            border-left: 3px solid var(--main-color);
+            border-radius: 0 8px 8px 0;
         }
-        
-        .profile-info p { 
-            color: var(--accent); 
-            font-family: 'Courier New', monospace; 
-            margin: 5px 0; 
-        }
+        .exp-item { margin-bottom: 25px; }
+        .exp-date { color: var(--main-color); font-weight: bold; font-family: monospace; font-size: 0.9rem; }
+        .exp-title { color: white; display: block; font-size: 1.2rem; margin: 5px 0; }
+        .exp-link { color: var(--accent); text-decoration: none; font-size: 1rem; }
+        .exp-link:hover { text-decoration: underline; }
 
-        /* --- Projetos Grid --- */
+        /* --- PROJETOS (CARDS CLICÁVEIS) --- */
         .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
-
+        .project-card-link {
+            text-decoration: none; color: inherit; display: block;
+        }
         .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-            backdrop-filter: blur(2px);
+            background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 12px; overflow: hidden;
+            transition: all 0.3s ease; backdrop-filter: blur(4px);
+            height: 100%;
         }
-
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: var(--main-color);
-            box-shadow: 0 5px 15px rgba(35, 134, 54, 0.2);
+            box-shadow: 0 10px 20px rgba(35, 134, 54, 0.2);
         }
-
         .card-img {
-            width: 100%;
-            height: 160px;
-            background-color: #21262d; /* Placeholder cinza */
-            object-fit: cover;
-            border-bottom: 1px solid var(--border);
+            width: 100%; height: 180px; object-fit: cover;
+            border-bottom: 1px solid var(--border); background: #21262d;
         }
-
-        .card-content { padding: 15px; }
+        .card-content { padding: 20px; }
         .card-content h3 { margin: 0 0 10px 0; color: white; font-size: 1.2rem; }
-        .card-content p { font-size: 0.9rem; color: #8b949e; margin-bottom: 10px; }
-        
-        .tag {
-            display: inline-block;
-            background: rgba(35, 134, 54, 0.1);
-            color: var(--main-color);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
+        .card-content p { font-size: 0.9rem; color: #8b949e; line-height: 1.5; }
+        .tag-pill {
+            display: inline-block; background: rgba(35, 134, 54, 0.15);
+            color: var(--main-color); padding: 4px 10px;
+            border-radius: 6px; font-size: 0.75rem; font-weight: bold; margin-top: 10px;
         }
 
-        footer { text-align: center; margin-top: 60px; color: #484f58; font-size: 0.8rem; padding: 20px; }
+        h2 { border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 25px; }
+        footer { text-align: center; margin-top: 80px; color: #484f58; font-size: 0.8rem; padding-bottom: 40px; }
     </style>
 </head>
 <body>
@@ -155,39 +113,58 @@
         <div class="profile-info">
             <h1>Vitor Gomes</h1>
             <p>> Cybersecurity Analyst & Researcher</p>
-            <div style="display: flex; justify-content: center; gap: 15px; margin-top: 10px; flex-wrap: wrap;">
-                <span style="color: #8b949e; font-size: 0.9rem;">📍 Portugal</span>
-                <span style="color: #8b949e; font-size: 0.9rem;">🛡️ Pentesting</span>
-                <span style="color: #8b949e; font-size: 0.9rem;">🔍 Red Teaming</span>
+            <div class="tags-header">
+                <span>📍 Porto, Portugal</span>
+                <span>🛡️ Pentesting</span>
+                <span>🔍 Red Teaming</span>
             </div>
         </div>
     </header>
 
-    <h2>[#] Projetos_e_Writeups</h2>
+    <section class="experience-section">
+        <h2>[#] Experience_&_Education</h2>
+        
+        <div class="exp-item">
+            <span class="exp-date">202X - Presente</span>
+            <span class="exp-title">Estagiário de Cibersegurança</span>
+            <a href="https://bocadolobo.com" target="_blank" class="exp-link">@ Covet Group-Boca Do Lobo [↗]</a>
+            <p style="color: #8b949e; font-size: 0.9rem; margin-top: 10px;">Monitorização de ativos, análise de vulnerabilidades e resposta a incidentes.</p>
+        </div>
+
+        <div class="exp-item">
+            <span class="exp-date">2024 - 2026</span>
+            <span class="exp-title">CTeSP de cibersegurança</span>
+            <a href="https://istec-porto.pt" target="_blank" class="exp-link">@ ISTEC [↗]</a>
+            <p style="color: #8b949e; font-size: 0.9rem; margin-top: 10px;">Especialização em cibersegurança.</p>
+        </div>
+    </section>
+
+    <h2>[#] Projetos_e_Tools</h2>
     
     <div class="grid">
-        <a href="https://github.com/VGomes3626/URL-JS-Scanner" target="_blank" style="text-decoration: none; color: inherit;">
+        <a href="https://github.com/VGomes3626/URL-JS-Scanner" target="_blank" class="project-card-link">
             <div class="card">
-                <img src="JS-SCANNER-PRINT.png" alt="JS Scanner Preview" class="card-img">
+                <img src="JS-SCANNER-PRINT.png" alt="JS Scanner" class="card-img">
                 <div class="card-content">
-                    <h3>Scanner de termos JS em possiveis diretórios</h3>
-                    <p>Ferramenta interna para mapeamento de superfícies de ataque (attack surface mapping), capaz de identificar diretórios sensíveis e extrair segredos, como chaves de API e tokens.</p>
-                    <span class="tag">Verificador de URL´s variados</span>
+                    <h3>Scanner de termos JS</h3>
+                    <p>Mapeamento de superfícies de ataque para identificação de segredos e chaves expostas em ficheiros JavaScript.</p>
+                    <span class="tag-pill">Attack Surface Mapping</span>
                 </div>
             </div>
         </a>
 
-        <a href="https://github.com/VGomes3626/Cloud-Inspector" target="_blank" style="text-decoration: none; color: inherit;">
+        <a href="https://github.com/VGomes3626/Cloud-Inspector" target="_blank" class="project-card-link">
             <div class="card">
-                <img src="CLOUD-INSPECTOR-PRINT.png" alt="Cloud Inspector Preview" class="card-img">
+                <img src="CLOUD-INSPECTOR-PRINT.png" alt="Cloud Inspector" class="card-img">
                 <div class="card-content">
-                    <h3>Scanner de serviços cloud em dominios</h3>
-                    <p>Ferramenta interna para enumeração e descoberta de infraestrutura em nuvem (Cloud Asset Discovery), identificando Buckets expostos em AWS, GCP e Azure.</p>
-                    <span class="tag">Verificador de instâncias Cloud</span>
+                    <h3>Scanner de serviços Cloud</h3>
+                    <p>Ferramenta de descoberta de infraestrutura Cloud (AWS/Azure/GCP) e deteção de Buckets mal configurados.</p>
+                    <span class="tag-pill">Cloud Security</span>
                 </div>
             </div>
         </a>
     </div>
+
     <footer>
         <p>&copy; 2026 VGomes3626. All rights reserved.</p>
     </footer>
