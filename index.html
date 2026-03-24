@@ -9,6 +9,7 @@
     <title>VGomes3626 | InfoSec Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        /* --- CONFIGURAÇÕES DE CORES --- */
         :root {
             --bg: #0d1117;
             --card-bg: rgba(22, 27, 34, 0.8);
@@ -31,6 +32,7 @@
             min-height: 100vh;
         }
 
+        /* --- NAVEGAÇÃO --- */
         nav {
             position: fixed;
             top: 0; left: 0;
@@ -48,8 +50,6 @@
 
         .social-icons { display: flex; gap: 20px; }
         .social-icons a { color: var(--text); font-size: 1.4rem; transition: 0.3s; }
-        
-        /* Ícones agora brilham em VERDE no hover */
         .social-icons a:hover { color: var(--main-color); transform: scale(1.1); }
 
         .nav-links { display: flex; gap: 20px; }
@@ -62,6 +62,7 @@
         }
         .nav-links a:hover { color: var(--main-color); }
 
+        /* --- ANIMAÇÃO DE FUNDO (SCANLINES) --- */
         body::before {
             content: "";
             position: fixed;
@@ -75,21 +76,83 @@
 
         .container { max-width: 900px; margin: auto; padding: 120px 20px 40px 20px; position: relative; z-index: 1; }
 
+        /* --- CABEÇALHO / PERFIL --- */
         .profile-header { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 30px; }
+        
         .profile-pic {
             width: 160px; height: 160px; border-radius: 50%;
             border: 3px solid var(--main-color); object-fit: cover;
-            box-shadow: 0 0 20px rgba(35, 134, 54, 0.3); margin-bottom: 20px;
+            background-color: #000; box-shadow: 0 0 20px rgba(35, 134, 54, 0.3);
+            margin-bottom: 20px;
         }
-        .profile-info h1 { margin: 0; color: white; font-size: 2.2rem; }
-        
-        /* CARGO AGORA EM VERDE */
-        .profile-info p { color: var(--main-color); font-family: 'Courier New', monospace; margin: 10px 0; font-weight: bold; }
+
+        /* --- EFEITO GLITCH NO NOME (DURANTE O HOVER) --- */
+        .profile-info h1 {
+            margin: 0;
+            color: white;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block; /* Necessário para o efeito */
+        }
+
+        .profile-info h1:hover {
+            animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
+        }
+
+        /* Criamos cópias do texto com ::before e ::after */
+        .profile-info h1::before,
+        .profile-info h1::after {
+            content: attr(data-text); /* Pega o texto do HTML */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+            display: none; /* Escondido por defeito */
+        }
+
+        .profile-info h1:hover::before,
+        .profile-info h1:hover::after {
+            display: block; /* Mostra no hover */
+        }
+
+        .profile-info h1::before {
+            color: #ff00c1; /* Cor distorcida 1 */
+            z-index: -1;
+            animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) reverse both infinite;
+        }
+
+        .profile-info h1::after {
+            color: #00fff9; /* Cor distorcida 2 */
+            z-index: -2;
+            animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
+        }
+
+        /* Definição dos passos da animação de glitch */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        /* --- FIM DO EFEITO GLITCH --- */
+
+        .profile-info p { 
+            color: var(--main-color); 
+            font-family: 'Courier New', monospace; 
+            margin: 10px 0; 
+            font-weight: bold; 
+        }
         
         .tags-header { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 10px; }
         .tags-header span, .tags-header a { color: #8b949e; font-size: 0.85rem; text-decoration: none; }
         .tags-header a:hover { color: var(--main-color); }
 
+        /* --- ABOUT ME --- */
         .about-section {
             text-align: center; margin-bottom: 50px; line-height: 1.6;
             background: rgba(22, 27, 34, 0.5); padding: 25px;
@@ -98,6 +161,7 @@
         }
         .about-section p { margin: 0; color: #8b949e; font-size: 1rem; }
 
+        /* --- EXPERIENCE --- */
         .experience-section {
             margin-bottom: 50px; padding: 25px;
             background: rgba(35, 134, 54, 0.05);
@@ -111,6 +175,7 @@
         .exp-link { color: var(--accent); text-decoration: none; font-size: 1rem; }
         .exp-link:hover { text-decoration: underline; }
 
+        /* --- PROJECTS --- */
         .projects-wrapper { scroll-margin-top: 100px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .project-card-link { text-decoration: none; color: inherit; display: block; }
@@ -120,7 +185,11 @@
             transition: all 0.3s ease; backdrop-filter: blur(4px);
             height: 100%;
         }
-        .card:hover { transform: translateY(-8px); border-color: var(--main-color); box-shadow: 0 10px 20px rgba(35, 134, 54, 0.2); }
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--main-color);
+            box-shadow: 0 10px 20px rgba(35, 134, 54, 0.2);
+        }
         .card-img { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid var(--border); background: #21262d; }
         .card-content { padding: 20px; }
         .card-content h3 { margin: 0 0 10px 0; color: white; font-size: 1.2rem; }
@@ -153,11 +222,11 @@
     <header class="profile-header">
         <img src="FOTO-VITOR-CURRICULO.png" alt="Vitor Gomes" class="profile-pic">
         <div class="profile-info">
-            <h1>Vitor Gomes</h1>
+            <h1 data-text="Vitor Gomes">Vitor Gomes</h1>
             <p>> Cybersecurity Analyst & Researcher</p>
             <div class="tags-header">
-                <span> Porto, Portugal</span>
-                <span> 914929184</span>
+                <span>📍 Porto, Portugal</span>
+                <span>📞 914929184</span>
                 <a href="mailto:drakonvitorgomes@gmail.com">✉️ drakonvitorgomes@gmail.com</a>
             </div>
         </div>
